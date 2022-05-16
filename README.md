@@ -1,5 +1,5 @@
 # Generating Controlled Vocabulary from C2M2
-This repository is to create the data requested in this Help Desk inquiry: [https://cfde.atlassian.net/jira/servicedesk/projects/HELP/queues/custom/4/HELP-262](https://cfde.atlassian.net/jira/servicedesk/projects/HELP/queues/custom/4/HELP-262)
+The purpose of this repository is to create the data requested in this Help Desk inquiry: [https://cfde.atlassian.net/jira/servicedesk/projects/HELP/queues/custom/4/HELP-262](https://cfde.atlassian.net/jira/servicedesk/projects/HELP/queues/custom/4/HELP-262)
 
 Relevant text:
 
