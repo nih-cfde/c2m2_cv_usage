@@ -3,6 +3,7 @@
 import os
 import sys
 import json
+import sys
 
 # these are basic DERIVA APIs to access raw ERMrest query capabilities
 from deriva.core import ErmrestCatalog, urlquote, DEFAULT_HEADERS, DEFAULT_SESSION_CONFIG
@@ -129,12 +130,16 @@ for row in path.fetch(limit=None):
     for nid_array_cname, vocab_table in vocab_tables.items():
         tname = vocab_table._name
         nid_array = row[nid_array_cname]
-        if nid_array and isinstance(nid_array[0], list):
-            # array is actually pairs of [term, association_type], we only want term nids
-            nid_array = [ p[0] for p in nid_array ]
         for nid in nid_array:
-            # use int(nid) to handle mistaken text types in 2021-Q1 prod nid arrays
-            tid = vocab_terms[tname][int(nid)]['id']
+            try:
+                if isinstance(nid, str):
+                    nid = json.loads(nid) # compat shim
+                if isinstance(nid, list):
+                    nid = nid[0] # found [term, association_type] pair
+                tid = vocab_terms[tname][nid]['id']
+            except:
+                sys.stderr.write('%s\n' % (('BUG', nid_array_cname, tname, nid_array, nid),))
+                raise
             vocab_stats.setdefault(tname, {}).setdefault(tid, {}).setdefault(dcc_key, {})
             for cnt in {'num_collections', 'num_files', 'num_biosamples', 'num_subjects'}:
                 cnt_val = row[cnt] if row[cnt] is not None else 0
@@ -142,4 +147,5 @@ for row in path.fetch(limit=None):
                 vocab_stats[tname][tid][dcc_key][cnt] += cnt_val
 
 # either load this somewhere else or just take a look and massage the data further...
+#print(json.dumps([ dcc['dcc_abbreviation'] for dcc in vocab_terms['dcc'].values() ]))
 print(json.dumps(vocab_stats, indent=2))
