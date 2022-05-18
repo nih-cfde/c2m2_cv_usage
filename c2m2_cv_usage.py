@@ -147,5 +147,5 @@ for row in path.fetch(limit=None):
                 vocab_stats[tname][tid][dcc_key][cnt] += cnt_val
 
 # either load this somewhere else or just take a look and massage the data further...
-#print(json.dumps([ dcc['dcc_abbreviation'] for dcc in vocab_terms['dcc'].values() ]))
+print(json.dumps([ dcc['dcc_abbreviation'] for dcc in vocab_terms['dcc'].values() ]))
 print(json.dumps(vocab_stats, indent=2))
