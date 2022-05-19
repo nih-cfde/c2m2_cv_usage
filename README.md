@@ -9,7 +9,7 @@ We also need Uberon terms, see Amanda’s earlier data compilation at
 
 https://docs.google.com/spreadsheets/d/1wkoN9fyUtVZWYnbK0S0AKJmiTS-yELCRKgkNqk870eA/edit?pli=1#gid=1729887084 
 
-### Commands ran
+### Workflow
 
 ```
 # create conda environment
@@ -17,20 +17,23 @@ https://docs.google.com/spreadsheets/d/1wkoN9fyUtVZWYnbK0S0AKJmiTS-yELCRKgkNqk87
 conda create -n deriva -y python==3.9
 
 # activate and install deriva
+
 conda activate deriva
 pip install deriva
 
-# run the script
-python c2m2_cv_usage.py
-```
+# run the C2M2 script
 
-Then I get the error message:
+python c2m2_cv_usage.py > out.txt
 
-```
-(deriva) jessicalumian@Jessicas-MacBook-Pro uberon_cfde % python c2m2_cv_usage.py
-Traceback (most recent call last):
-  File "/Users/jessicalumian/uberon_cfde/c2m2_cv_usage.py", line 137, in <module>
-    tid = vocab_terms[tname][int(nid)]['id']
-ValueError: invalid literal for int() with base 10: '[16, 2]'
-(deriva) jessicalumian@Jessicas-MacBook-Pro uberon_cfde %
+# remove top line of out.txt that prints all DCCs name
+
+# run reformatting script to make csv
+
+python display.py > table.csv
+
+# install pandas, remove rows that contain all zeros
+
+conda install pandas
+
+python remove_zeros.py
 ```
