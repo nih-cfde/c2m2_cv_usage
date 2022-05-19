@@ -5,6 +5,8 @@ with open("out.txt", "rt") as fp:
 
 dccs = ["KFDRC", "SPARC", "ERCC_DCC", "HMP", "4DN_DCIC", "GTEx", "IDG", "LINCS", "MW", "GlyGen", "HuBMAP"]
 
+print("format_type,", "KFDRC,", "SPARC,", "ERCC_DCC,", "HMP,", "4DN_DCIC,", "GTEx,", "IDG,", "LINCS,", "MW,", "GlyGen,", "HuBMAP,")
+
 for k, v in data.items():
    for term, dcc_matches in v.items():
       print(term, end = ", ")
