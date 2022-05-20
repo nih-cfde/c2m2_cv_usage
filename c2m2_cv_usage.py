@@ -137,15 +137,16 @@ for row in path.fetch(limit=None):
                 if isinstance(nid, list):
                     nid = nid[0] # found [term, association_type] pair
                 tid = vocab_terms[tname][nid]['id']
+                label = vocab_terms[tname][nid]['name']
             except:
                 sys.stderr.write('%s\n' % (('BUG', nid_array_cname, tname, nid_array, nid),))
                 raise
-            vocab_stats.setdefault(tname, {}).setdefault(tid, {}).setdefault(dcc_key, {})
+            vocab_stats.setdefault(tname, {}).setdefault(tid, {"_name": label}).setdefault(dcc_key, {})
             for cnt in {'num_collections', 'num_files', 'num_biosamples', 'num_subjects'}:
                 cnt_val = row[cnt] if row[cnt] is not None else 0
                 vocab_stats[tname][tid][dcc_key].setdefault(cnt, 0)
                 vocab_stats[tname][tid][dcc_key][cnt] += cnt_val
 
 # either load this somewhere else or just take a look and massage the data further...
-print(json.dumps([ dcc['dcc_abbreviation'] for dcc in vocab_terms['dcc'].values() ]))
+#print(json.dumps([ dcc['dcc_abbreviation'] for dcc in vocab_terms['dcc'].values() ]))
 print(json.dumps(vocab_stats, indent=2))
