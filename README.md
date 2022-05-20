@@ -9,6 +9,8 @@ We also need Uberon terms, see Amanda’s earlier data compilation at
 
 https://docs.google.com/spreadsheets/d/1wkoN9fyUtVZWYnbK0S0AKJmiTS-yELCRKgkNqk870eA/edit?pli=1#gid=1729887084 
 
+### Column Descriptions
+
 - Column A: Row number starting from 1
 - Column B named `format_type`: The identifier for each row, found in JSON. All options: `NCBI:txid10116`, `data:2044`, `DOID:9256`, `format:3547`, `OBI:0001271`, `UBERON:0002441`
 - Column C named `label`: This comes from the `_name` field in the JSON. Examples: `cervicothoracic ganglion`, `nervous system`, `heart`
