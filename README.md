@@ -37,8 +37,7 @@ python c2m2_cv_usage.py > out.txt
 
 python display.py > table.csv
 
-# install pandas, remove rows that contain all zeros
-# creates table_no_zero.csv, but is currently broken
+# install pandas, remove rows that contain all zeros, creates file table_no_zero.csv
 
 conda install pandas
 
