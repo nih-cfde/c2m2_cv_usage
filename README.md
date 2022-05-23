@@ -33,8 +33,6 @@ pip install deriva
 
 python c2m2_cv_usage.py > out.txt
 
-# remove top line of out.txt that prints all DCCs name
-
 # run reformatting script to make csv
 
 python display.py > table.csv
