@@ -22,11 +22,14 @@ def main():
     header = ["rownum", "format_type", "label", "record_type"] + dccs
     csv_w.writerow(header)
 
+    # unpack the input JSON
     n = 0
-    for _, all_dcc_dict in data.items():
-        for term, dcc_matches in all_dcc_dict.items():
-            row = []
-            row.append(term)
+    for record_type, all_dcc_dict in data.items():
+        for format_type, dcc_matches in all_dcc_dict.items():
+            label = dcc_matches['_name']
+            row = [ n + 1, format_type, label, record_type ]
+
+            # add all of the DCC avlues for num_biosamples
             for dcc_name in dccs:
                 dcc_values = dcc_matches.get(dcc_name,{})
                 num_biosamples = dcc_values.get("num_biosamples", 0)
