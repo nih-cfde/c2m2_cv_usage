@@ -35,7 +35,7 @@ python c2m2_cv_usage.py > out.txt
 
 # run reformatting script to make csv
 
-python display.py > table.csv
+python display.py out.txt -o table.csv
 
 # install pandas, remove rows that contain all zeros, creates file table_no_zero.csv
 
