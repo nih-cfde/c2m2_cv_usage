@@ -12,6 +12,7 @@ from deriva.core.datapath import Min, Max, Cnt, CntD, Avg, Sum, Bin, ArrayD
 # get some params from environment
 servername = os.getenv('DERIVA_SERVERNAME', 'app.nih-cfde.org')
 catalogid = os.getenv('DERIVA_CATALOGID', '1')
+species_id = os.getenv('FILTER_ON_SPECIES', None)
 
 # bind to ermrest service
 # not using credentials, so only works for public catalogs...
@@ -21,6 +22,20 @@ catalog = ErmrestCatalog('https', servername, catalogid)
 # and build a datapath query by pulling things from model and connecting them
 builder = catalog.getPathBuilder()
 dcc = builder.CFDE.dcc
+
+# find numeric ID for desired species, to use below...
+if species_id is not None:
+    sys.stderr.write('Detected FILTER_ON_SPECIES=%r environment variable...\n' % (species_id,))
+    path = builder.CFDE.ncbi_taxonomy.path
+    path = path.filter( path.ncbi_taxonomy.id == species_id )
+    taxons = path.entities()
+    if len(taxons) != 1:
+        raise ValueError('Could not locate species taxon with id=%r\n' % (species_id,))
+    taxon = taxons[0]
+    species_nid = taxon['nid']
+    sys.stderr.write('Located taxon %r\n' % (taxon,))
+else:
+    species_nid = None
 
 combined_fact = builder.CFDE.combined_fact
 core_fact = builder.CFDE.core_fact
@@ -90,6 +105,11 @@ path = path.link(core_fact.alias('cf'), on=(path.s.core_fact == core_fact.nid))
 path = path.link(pubchem_fact.alias('pcf'), on=(path.s.pubchem_fact == pubchem_fact.nid))
 path = path.link(protein_fact.alias('prf'), on=(path.s.protein_fact == protein_fact.nid))
 path = path.link(gene_fact.alias('gf'), on=(path.s.gene_fact == gene_fact.nid))
+
+if species_nid is not None:
+    sys.stderr.write('Restricting vocabulary usage query to fact records related to subject_species=%r\n' % (species_nid,))
+    path = path.filter(path.cf.subject_species == species_nid)
+
 path.context = path.s
 path = path.attributes(*(
     [
