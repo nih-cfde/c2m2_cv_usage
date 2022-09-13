@@ -7,6 +7,7 @@ rule all:
         f"Generate Controlled Vocabulary from C2M2"
     input:
         "table.csv",
+        "out.txt",
         "c2m2_cv_usage.py"
 
 
@@ -34,3 +35,16 @@ rule run_formatting_script:
         python remove_zeros.py
         cat table_no_zero.csv
     """
+
+rule remove_zeros:
+    message:
+        "Removing zeros"
+    output:
+        "table_no_zero.csv"
+    input:
+        "table.csv"       
+    shell: """
+        python remove_zeros.py
+        head {output}
+        tail {output}
+    """    
