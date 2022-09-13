@@ -17,4 +17,5 @@ jobs:
         run: |
           pip install deriva
           pip install pandas
+          pip install snakemake
       - run: snakemake -j 1
