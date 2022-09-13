@@ -27,7 +27,6 @@ conda env create -f environment.yml
 # activate and install deriva
 
 conda activate deriva
-pip install deriva pandas
 
 # run the C2M2 download etc. etc
 make
