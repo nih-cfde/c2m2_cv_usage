@@ -12,7 +12,7 @@ from deriva.core.datapath import Min, Max, Cnt, CntD, Avg, Sum, Bin, ArrayD
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument('-o', '--output', require=True)
+    p.add_argument('-o', '--output', required=True)
     args = p.parse_args()
 
     # get some params from environment
