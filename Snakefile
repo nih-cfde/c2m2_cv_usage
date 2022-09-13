@@ -6,6 +6,7 @@ rule all:
     message:
         f"Generate Controlled Vocabulary from C2M2"
     input:
+        "table_no_zero.csv",
         "table.csv",
         "out.txt",
         "c2m2_cv_usage.py"
