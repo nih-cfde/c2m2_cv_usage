@@ -32,4 +32,5 @@ rule run_formatting_script:
         # run reformatting script to make csv
         python display.py {input} -o {output}
         python remove_zeros.py
+        cat table_no_zero.csv
     """
