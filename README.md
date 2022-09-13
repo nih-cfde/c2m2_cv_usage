@@ -22,7 +22,7 @@ https://docs.google.com/spreadsheets/d/1wkoN9fyUtVZWYnbK0S0AKJmiTS-yELCRKgkNqk87
 ```
 # create conda environment
 
-conda create -n deriva -c bioconda -y snakemake-minimal python==3.9 
+conda create -n deriva -c conda-forge -c bioconda -y snakemake-minimal python==3.9 
 
 # activate and install deriva
 
