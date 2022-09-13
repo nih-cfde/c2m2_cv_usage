@@ -22,7 +22,7 @@ https://docs.google.com/spreadsheets/d/1wkoN9fyUtVZWYnbK0S0AKJmiTS-yELCRKgkNqk87
 ```
 # create conda environment
 
-conda env create -f binder/environment.yml
+conda env create -f environment.yml
 
 # activate and install deriva
 
