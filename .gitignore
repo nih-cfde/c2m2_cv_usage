@@ -3,3 +3,4 @@ table_no_zero.csv
 table.csv
 out_working.csv
 out_working_no_zero.csv
+.snakemake/
