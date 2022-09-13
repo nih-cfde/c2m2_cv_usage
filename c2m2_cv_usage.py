@@ -155,7 +155,9 @@ def main():
 
     # either load this somewhere else or just take a look and massage the data further...
     #print(json.dumps([ dcc['dcc_abbreviation'] for dcc in vocab_terms['dcc'].values() ]))
-    print(json.dumps(vocab_stats, indent=2), file=args.output)
+
+    with open(args.output, 'wt') as fp:
+        print(json.dumps(vocab_stats, indent=2), file=fp)
 
     return 0
 
