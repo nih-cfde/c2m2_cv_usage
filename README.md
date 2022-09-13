@@ -22,24 +22,13 @@ https://docs.google.com/spreadsheets/d/1wkoN9fyUtVZWYnbK0S0AKJmiTS-yELCRKgkNqk87
 ```
 # create conda environment
 
-conda create -n deriva -c conda-forge -c bioconda -y snakemake-minimal python==3.9 
+conda create -n deriva -c conda-forge -c bioconda -y snakemake-minimal python==3.9
 
 # activate and install deriva
 
 conda activate deriva
-pip install deriva
+pip install deriva pandas
 
-# run the C2M2 script
-
-python c2m2_cv_usage.py > out.txt
-
-# run reformatting script to make csv
-
-python display.py out.txt -o table.csv
-
-# install pandas, remove rows that contain all zeros, creates file table_no_zero.csv
-
-conda install pandas
-
-python remove_zeros.py
+# run the C2M2 download etc. etc
+make
 ```
