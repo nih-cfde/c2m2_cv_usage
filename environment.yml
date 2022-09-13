@@ -1,0 +1,12 @@
+name: deriva
+channels:
+    - conda-forge
+    - bioconda
+    - defaults
+dependencies:
+    - snakemake-minimal
+    - python=3.9
+    - pip
+    - pip:
+      - deriva 
+      - pandas
