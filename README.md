@@ -31,3 +31,7 @@ conda activate deriva
 # run the C2M2 download etc. etc
 make
 ```
+
+### Sharing
+
+Add uploade the 'table_no_zeros.csv` file to [Google Drive](https://drive.google.com/drive/folders/1Vndi6jVKh2ae9XeTbAJymm-A-jxBrkH6?usp=share_link). Rename to "CFDE Vocabulary MM/DD/YY.csv" and open with Google Sheets. Share appropriately.
